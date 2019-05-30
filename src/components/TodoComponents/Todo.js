@@ -3,11 +3,11 @@ import React from 'react';
 
 const Todo = (props) => {
 
-    return(
-        <div key={props.props.id}>
-            {props.props.task}
-        </div>
-    )
+    if(props.props.completed === true){
+           return (<div className="todo complete" >{props.props.task}</div> )
+        }else{
+            return (<div className="todo" onClick={() =>props.completeTask(props)}>{props.props.task}</div> )
+        }
     
 }
 

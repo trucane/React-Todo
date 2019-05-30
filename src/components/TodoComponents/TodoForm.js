@@ -1,7 +1,4 @@
 import React from 'react';
-import {TodoData} from './TodoData';
-
-
 
 
 
@@ -19,9 +16,8 @@ export class TodoForm extends React.Component{
 
 
     handleInput = (event) =>{
-        this.setState({
-            [event.target.name]:event.target.value
-        });
+        this.setState({ [event.target.name]:event.target.value });
+        localStorage.setItem(event.target.name , event.target.value )
     };
 
 
@@ -29,18 +25,20 @@ export class TodoForm extends React.Component{
 
         return(
 
-        <form onSubmit={(e) => this.props.grub(e, this.state.task)}>
+            <div>
+                <form onSubmit={(e) => this.props.addTsk(e, this.state.task)}>
 
+                    <input 
+                    placeholder="add task" 
+                    name="task" 
+                    value={this.state.task}
+                    onChange={this.handleInput}/>
 
-            <input 
-            placeholder="add task" 
-            name="task" 
-            value={this.state.task}
-            onChange={this.handleInput}/>
+                    <button id="add">Add Todo</button>
+                    
+                </form>
+            </div>
 
-            <button>Add Todo</button>
-            
-        </form>
         )
     }
 }
