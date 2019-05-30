@@ -2,13 +2,13 @@ import React from 'react';
 
 
 const Todo = (props) => {
-
-    if(props.props.completed === true){
-           return (<div className="todo complete" >{props.props.task}</div> )
-        }else{
-            return (<div className="todo" onClick={() =>props.completeTask(props)}>{props.props.task}</div> )
-        }
-    
+    return (
+        //ternary, if task complete and class .complete to line-through task
+        <div className={ `${props.props.completed ? 'complete' : ''}`}  onClick={() =>props.completeTask(props.props.id)}>
+            <p className="todo">
+                    {props.props.task}
+            </p>
+        </div> )
 }
 
 export default Todo;

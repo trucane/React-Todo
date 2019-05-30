@@ -23,45 +23,45 @@ class Todolist extends React.Component {
         if(task.trim() === ""){
 
         }else{
-
-    
-            let randomNum = new Date().getTime();
-    
-            //console.log(this.state.item)
     
             //create new todo item
             const newTodo = {
                 task: task,
-                id: randomNum,
+                id: Date.now(),
                 completed: false
             }
     
-            //create new array of state, pass in the static state array and add new todo item
-            const todoList = [...this.state.tododata];
+            //create new array of state, pass in the new state array and add new todo item
     
-            todoList.push(newTodo);
-    
-            this.setState({
-                tododata:todoList,
-                task:'',
-                id:'',
-                completed:''
+            this.setState( prevState =>{
+                return{
+                    tododata:[...prevState.tododata, newTodo],
+                }
             });
     
-            localStorage.setItem(this.state.tododata, JSON.stringify(todoList))
+            //localStorage.setItem(this.state.tododata, JSON.stringify(todoList))
             //localStorage.setItem("newTodo", "");
         }
     };
 
 
-    completeTask = (todo) =>{
-        //toggle false or true
-        todo.props.completed === true ? todo.props.completed = false : todo.props.completed = true;
-        console.log(todo.props.completed)
-
-        //reset state and update list
-        this.setState({
-            tododata: this.state.tododata
+    completeTask = (id) =>{
+       console.log(id)
+        this.setState( prevState =>{
+            return{
+                tododata: prevState.tododata.map(task =>{
+                    console.log(task)
+                    if(task.id === id){
+                        console.log(!task.completed)
+                        return {
+                            ...task,
+                            completed:!task.completed
+                        };
+                    }else{
+                        return task
+                    }
+                })
+            }
         });
     }
 
@@ -79,7 +79,7 @@ class Todolist extends React.Component {
 
     render(){
         return(
-            (<div className="container">
+            <div className="container">
 
                 <div className="todo-container">
                     <h2 className="todo-header">Todo List</h2>
@@ -96,7 +96,7 @@ class Todolist extends React.Component {
                     {/* call onclick remove function to remove all completed task */}
                     <button onClick={this.removeTodo}>Complete</button>
                 </div>
-            </div>)
+            </div>
         )  
     }
     

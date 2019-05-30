@@ -1,4 +1,5 @@
 .container{
+    background:gray;
     width:40%;
     margin:0 auto;
     border:2px solid lightgray;
@@ -11,12 +12,14 @@
 }
 
 .todo{
-    padding:1.2em;
-    background:gray;
     color:white;
     border-bottom:2px dotted white;
+    margin:0;
+    padding:1.4em;
 }
 
 .complete{
-    text-decoration:line-through
+    text-decoration:line-through;
+    background:cyan;
 }
+
