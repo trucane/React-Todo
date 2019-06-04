@@ -1,0 +1,25 @@
+.container{
+    background:gray;
+    width:40%;
+    margin:0 auto;
+    border:2px solid lightgray;
+}
+
+.todo-header{
+    background:lightblue;
+    margin:0;
+    padding:10px;
+}
+
+.todo{
+    color:white;
+    border-bottom:2px dotted white;
+    margin:0;
+    padding:1.4em;
+}
+
+.complete{
+    text-decoration:line-through;
+    background:cyan;
+}
+
